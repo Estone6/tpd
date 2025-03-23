@@ -1,8 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js with Tailwind CSS - Sidebar & Footer Layout
+
+This is a Next.js application with Tailwind CSS featuring a common sidebar and footer layout across all pages.
+
+## Pages
+
+The application includes the following pages:
+- **Home** - Landing page with hero section and features
+- **About** - Information about the company, values, and team
+- **Services** - Details about services offered
+- **Contact** - Contact form and office locations
+
+## Features
+
+- Responsive layout with sidebar navigation and footer
+- Modern UI design using Tailwind CSS
+- Type-safe development with TypeScript
+- ESLint for code quality
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +37,41 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/
+│   ├── components/      # Reusable components
+│   │   ├── Footer.tsx   # Footer component
+│   │   └── Sidebar.tsx  # Sidebar navigation component
+│   ├── about/           # About page
+│   ├── services/        # Services page
+│   ├── contact/         # Contact Us page
+│   ├── globals.css      # Global styles
+│   ├── layout.tsx       # Root layout with sidebar and footer
+│   └── page.tsx         # Home page
+├── public/              # Static assets
+└── ...                  # Configuration files
+```
+
+## Customization
+
+You can customize the appearance by modifying the Tailwind classes or editing the components directly. The layout structure can be found in `app/layout.tsx` which includes the sidebar and footer components.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This application can be easily deployed on Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/nextjs-tailwind-sidebar-footer)

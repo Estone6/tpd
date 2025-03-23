@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
 :root {
+  /* Base colors */
   --background: #ffffff;
   --foreground: #171717;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #171717;
+
+  /* Sidebar widths */
+  --sidebar-width-sm: 16rem; /* 256px */
+  --sidebar-width-md: 20rem; /* 320px */
+  --sidebar-width-lg: 16rem; /* 256px */
+  --sidebar-width-xl: 20rem; /* 320px */
+
+  /* Custom color scheme - Light mode */
+  --heading-color: #000000;
+  --gold-accent: #a2783a;
+  --gold-light: #d1a666;
+  --gray-text: #adadad;
+  --text-gray-light: #d1d1d1;
+  --secondary-text: var(--gray-text);
+  --pink-accent: rgba(227, 191, 182, 0.1);
+
+  /* Font variables */
+  --font-cormorant: var(--font-cormorant), serif;
+  --font-nunito: var(--font-nunito), sans-serif;
+  --font-cursive: var(--font-tuesday), cursive, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold: var(--gold-accent);
+  --color-gold-light: var(--gold-light);
+  --color-gray: var(--gray-text);
+  --color-gray-light: var(--text-gray-light);
+  --color-secondary: var(--secondary-text);
+  --font-cormorant: var(--font-cormorant), serif;
+  --font-nunito: var(--font-nunito), serif;
+  --font-cursive: var(--font-tuesday), cursive, serif;
+  --color-pink: var(--pink-accent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  transition: color 0.3s ease, background-color 0.3s ease;
+  height: 100%;
+  overflow-x: hidden;
+  perspective: 1px;
+  transform-style: preserve-3d;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant);
+  overflow-x: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Set headings to use Nunito Sans */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-nunito);
+  color: var(--heading-color);
+  transition: color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Layout styles for sidebar and main content */
+.page-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Main Content - Default for all screens */
+.main-content {
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Mobile active state - sidebar is 16rem (64px) wide */
+.main-content.active {
+  transform: translateX(var(--sidebar-width-sm));
+}
+
+/* Tablet (md) active state - sidebar is 20rem (80px) wide */
+@media screen and (min-width: 768px) {
+  .main-content.active {
+    transform: translateX(var(--sidebar-width-md));
+  }
+}
+
+/* Desktop (lg) default state - sidebar is 16rem (64px) wide and always visible */
+@media screen and (min-width: 1024px) {
+  .main-content {
+    width: calc(100% - var(--sidebar-width-lg));
+    margin-left: var(--sidebar-width-lg);
+    transform: translateX(0);
+  }
+
+  /* No additional transform needed when active since sidebar is always visible */
+  .main-content.active {
+    transform: translateX(0);
+  }
+}
+
+/* Large Desktop (xl) default state - sidebar is 20rem (80px) wide and always visible */
+@media screen and (min-width: 1280px) {
+  .main-content {
+    width: calc(100% - var(--sidebar-width-xl));
+    margin-left: var(--sidebar-width-xl);
+    transform: translateX(0);
+  }
+}
+
+.custom-header-bg {
+  /* The gradient overlay is the first layer,
+     and the dynamic image is added via the CSS variable */
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.9) 50%,
+      white
+    ),
+    var(--custom-header-bg);
 }
